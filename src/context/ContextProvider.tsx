@@ -15,9 +15,10 @@ const initialValue = {
 };
 
 export const PlanetsContext = createContext<PlanetsContextType>(initialValue);
-const [data, setData] = useState(initialValue.data);
 
 function ContextProvider({ children }: Props) {
+  const [data, setData] = useState(initialValue.data);
+
   return (
     <PlanetsContext.Provider value={ { data, setData } }>
       {children}

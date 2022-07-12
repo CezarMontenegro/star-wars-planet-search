@@ -1,13 +1,26 @@
-import React, { useContext } from 'react';
-import ContextProvider, { PlanetsContext } from './context/ContextProvider';
+import React, { useState } from 'react';
+import ContextProvider from './context/ContextProvider';
+import Table from './components/Table';
 import './App.css';
 
 function App() {
-  const { data, setData } = useContext(PlanetsContext);
+  const [filter, setFilter] = useState<string>('');
+  function handleFilter(e: React.ChangeEvent<HTMLInputElement>) {
+    setFilter(e.target.value);
+  }
 
   return (
     <ContextProvider>
-      <p>papai</p>
+      <div>
+        <h1>Star Wars Planets</h1>
+        <input
+          type="text"
+          name="name"
+          onChange={ (e) => handleFilter(e) }
+          data-testid="name-filter"
+        />
+        <Table filter={ filter } />
+      </div>
     </ContextProvider>
   );
 }
